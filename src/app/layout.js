@@ -1,6 +1,14 @@
 'use client'
 import { usePathname } from "next/navigation";
 import "./globals.css";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useRef, useState } from 'react';
+import { Navigation } from 'swiper/modules';
+
+import Navbar from "@/Components/Navbar";
+
 
 // export const metadata = {
 //   title: "Create Next App",
@@ -15,6 +23,8 @@ export default function RootLayout({ children }) {
 
 
 
+
+
   
 
 
@@ -23,8 +33,30 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+     
+
       <body>
-        {children}
+     
+     
+      {isHome &&(
+       <div className="div">
+       
+         {children};
+       </div>
+
+
+      )}
+
+{!isHome &&(
+  <div className="div">
+  <Navbar></Navbar>
+
+  {children}
+</div>
+)}
+        
+      
+        
       </body>
     </html>
   );
