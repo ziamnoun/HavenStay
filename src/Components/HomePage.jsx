@@ -54,6 +54,11 @@ export default function HomePage() {
         <li><a>Blog</a></li>
         <li><a>About</a></li>
         <li><a>Contact</a></li>
+
+        <div className="div-log-sign-in flex gap-2">
+        <button className="border-2 border-black rounded-md px-1">Log In</button>
+        <button className="border-2 border-black  rounded-md px-1">Sign In</button>
+        </div>
        </div>
       </ul>
     </div>
@@ -78,7 +83,7 @@ export default function HomePage() {
               <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
               <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
               <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
-              Signup
+              Sign Up
             </button>
           </div>
         </div>
