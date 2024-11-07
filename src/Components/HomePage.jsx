@@ -11,7 +11,7 @@ export default function HomePage() {
     <div className='h-screen bg-white'>
         {/*upper part using flex layout */}
         <div className="div-upper-part h-[80%] bg-slate-500 grid grid-cols-3">
-                        <div className="div-1 bg-[#282828] col-span-1">
+                        <div className="div-1 bg-[#282828] col-span-1 border-r-2 border-black">
                     <div className="Comany-Name text-3xl text-white mt-auto lg:mt-6 mx-6">
                         <span className='text-[#c2956b]'>Haven</span>Stay
                     </div>
@@ -41,42 +41,36 @@ export default function HomePage() {
                 </div>
 
             <div className="div-2-sliding-part bg-transparent col-span-2 h-full">
-            <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-                <SwiperSlide>
-                        <div>
-                            <img 
-                                src="https://i.ibb.co/02Xy1Yw/360-F-429356296-CVQ5-Lk-C6-Pl55k-UNLq-Lis-VKg-Tw9vjyif1.jpg" 
-                                alt="Slide 1" 
-                                className="h-screen lg:min-h-screen bg-cover bg-center"
-                            />
-                        </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                        <div>
-                            <img 
-                                src="https://i.ibb.co/02Xy1Yw/360-F-429356296-CVQ5-Lk-C6-Pl55k-UNLq-Lis-VKg-Tw9vjyif1.jpg" 
-                                alt="Slide 1" 
-                                className="h-screen lg:min-h-screen bg-cover bg-center"
-                            />
-                        </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                        <div>
-                            <img 
-                                src="https://i.ibb.co/02Xy1Yw/360-F-429356296-CVQ5-Lk-C6-Pl55k-UNLq-Lis-VKg-Tw9vjyif1.jpg" 
-                                alt="Slide 1" 
-                                className="h-screen lg:min-h-screen bg-cover bg-center"
-                            />
-                        </div>
-                </SwiperSlide>
-             </Swiper>
+            <Swiper navigation={true} modules={[Navigation]} className="mySwiper h-full">
+    <SwiperSlide className="flex h-full">
+        <img 
+            src="/Pics/—Pngtree—modern villa background with warm_15178008.png" 
+            alt="Slide 1" 
+            className="flex-1 w-full h-full object-cover"
+        />
+    </SwiperSlide>
+    <SwiperSlide className="flex h-full">
+        <img 
+            src="/Pics/movie-night-by-pool-whole-family.jpg" 
+            alt="Slide 2" 
+            className="flex-1 w-full h-full object-cover"
+        />
+    </SwiperSlide>
+    <SwiperSlide className="flex h-full">
+        <img 
+            src="/Pics/pngtree-living-room-with-a-view-over-the-city-at-night-image_2898420.jpg" 
+            alt="Slide 3" 
+            className="flex-1 w-full h-full object-cover"
+        />
+    </SwiperSlide>
+</Swiper>
 
             </div>
         </div>
         
         {/* Lower part using flex layout */}
         <div className="div-lower-part h-[20%] bg-red-950 grid grid-cols-3">
-            <div className="div-1 bg-green-500 col-span-1">fffff</div>
+            <div className="div-1 bg-green-500 col-span-1 border-r-2 border-black">fffff</div>
             <div className="div-2 bg-purple-500 col-span-2">222</div>
         </div>
     </div>
