@@ -1,10 +1,12 @@
+
 'use client'
 import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
-import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css/effect-fade';  
+import { Navigation, Autoplay, EffectFade } from 'swiper/modules'; 
 import { FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa'
 
 export default function HomePage() {
@@ -37,10 +39,10 @@ export default function HomePage() {
               href="#"
               className="mt-auto md:mt-8 group bg-transparent relative inline-block overflow-hidden rounded border border-[#c2956b] px-12 py-3 text-sm font-medium text-white hover:text-[#c2956b] focus:outline-none focus:ring active:bg-[#c2956b] active:text-white"
             >
-              <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-[#c2956b] transition-all duration-200 group-hover:w-full"></span>
-              <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-[#c2956b] transition-all duration-200 group-hover:h-full"></span>
-              <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-[#c2956b] transition-all duration-200 group-hover:w-full"></span>
-              <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-200 group-hover:h-full"></span>
+              <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
+              <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
+              <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
+              <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
               Signup
             </button>
           </div>
@@ -50,7 +52,9 @@ export default function HomePage() {
           <Swiper
             navigation={true}
             autoplay={{ delay: 1500, disableOnInteraction: false }} 
-            modules={[Navigation, Autoplay]}
+            effect="fade"  
+            speed={1000}    
+            modules={[Navigation, Autoplay, EffectFade]} 
             className="mySwiper h-full"
           >
             <SwiperSlide className="flex h-full">
@@ -87,23 +91,23 @@ export default function HomePage() {
           </div>
 
           {/* Social Media Icons */}
-          
           <div className="div">
             <p className='text-3xl text-White'>Contacts</p>
             <div className="flex space-x-6 mt-2">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#c2956b] hover:text-white transition-colors">
-              <FaFacebook size={30} />
-            </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-[#c2956b] hover:text-white transition-colors">
-              <FaInstagram size={30} />
-            </a>
-            <a href="ziam.2108055.ruet.mte@email.com" className="text-[#c2956b] hover:text-white transition-colors">
-              <FaEnvelope size={30} />
-            </a>
-          </div>
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#c2956b] hover:text-white transition-colors">
+                <FaFacebook size={30} />
+              </a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-[#c2956b] hover:text-white transition-colors">
+                <FaInstagram size={30} />
+              </a>
+              <a href="ziam.2108055.ruet.mte@email.com" className="text-[#c2956b] hover:text-white transition-colors">
+                <FaEnvelope size={30} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
+
