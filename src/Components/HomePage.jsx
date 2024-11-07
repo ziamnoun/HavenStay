@@ -23,10 +23,45 @@ export default function HomePage() {
 
   return (
     <div className='h-screen bg-white'>
-      <div className="div-upper-part h-[80%] bg-slate-500 grid grid-cols-3">
+      <div className="div-upper-part h-[80%] bg-white grid grid-cols-3">
         <div className="div-1 bg-[#282828] col-span-1 border-r-2 border-black">
-          <div className="Comany-Name text-3xl text-white mt-auto lg:mt-6 mx-6">
-            <span className='text-[#c2956b]'>Haven</span>Stay
+          <div className="div-nav flex justify-between">
+              <div className="Comany-Name text-3xl text-white mt-auto md:mt-6 mx-6">
+                <span className='text-[#c2956b]'>Haven</span>Stay
+              </div>
+              <div className="navbar-start mt-auto md:mt-6">
+    <div className="dropdown">
+      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle ">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 text-[#c2956b]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M4 6h16M4 12h16M4 18h7" />
+        </svg>
+      </div>
+      <ul
+        tabIndex={0}
+        className="menu menu-sm md:w-[50vw] dropdown-content bg-[#c2956b] rounded-box z-[2] mt-3 w-52 p-2 shadow  ">
+       <div className="div md:flex md:w-[50vw] justify-evenly">
+       <li><a>Home</a></li>
+        <li><a>Explore Properties</a></li>
+        <li><a>Blog</a></li>
+        <li><a>About</a></li>
+        <li><a>Contact</a></li>
+       </div>
+      </ul>
+    </div>
+  </div>
+ 
+
+
+
           </div>
           <div className="company-description text-lg text-white mt-4 md:mt-16 px-6">
             <p className='text-4xl'>
