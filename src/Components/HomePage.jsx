@@ -75,8 +75,12 @@ export default function HomePage() {
             </p>
             <button
               href="#"
-              className="mt-4 md:mt-8 group bg-transparent relative inline-block overflow-hidden rounded border border-[#c2956b] px-8 py-2 md:px-12 md:py-3 text-xs md:text-sm font-medium text-white hover:text-[#c2956b] transition-all duration-2000"
+              className="mt-auto md:mt-8 group bg-transparent relative inline-block overflow-hidden rounded border border-[#c2956b] px-12 py-3 text-sm font-medium text-white hover:text-[#c2956b] focus:outline-none focus:ring active:bg-[#c2956b] active:text-white"
             >
+              <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
+              <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
+              <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
+              <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
               Sign Up
             </button>
           </div>
