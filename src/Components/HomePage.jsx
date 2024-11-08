@@ -8,6 +8,7 @@ import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';  
 import { Navigation, Autoplay, EffectFade } from 'swiper/modules'; 
 import { FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa';
+import Link from 'next/link';
 
 export default function HomePage() {
   
@@ -58,8 +59,8 @@ export default function HomePage() {
         <li><a>Contact</a></li>
 
         <div className="div-log-sign-in flex gap-2">
-        <button className="border-2 border-black rounded-md px-1">Log In</button>
-        <button className="border-2 border-black  rounded-md px-1">Sign In</button>
+       <button  className="border-2 border-black rounded-md px-1"><Link href="/LogIn">Log In</Link> </button>
+        <button className="border-2 border-black  rounded-md px-1"><Link href="/SignUp">Sign In</Link></button>
         </div>
        </div>
               </ul>
