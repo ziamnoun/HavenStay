@@ -35,13 +35,33 @@ export default function Navbar() {
           <li><Link href="/about" className="hover:text-[#c2956b]">About</Link></li>
           <li><Link href="/contact" className="hover:text-[#c2956b]">Contact</Link></li>
           <li>
-            <Link href="/login">
-              <button className="border-2 border-[#c2956b] rounded-md px-3 py-1 hover:bg-[#c2956b]">Log In</button>
+            <Link href="/LogIn">
+              {/* <button className="border-2 border-[#c2956b] rounded-md px-3 py-1 hover:bg-[#c2956b]">Log In</button> */}
+              <button
+            
+            className="mt-auto ml-10  group bg-transparent relative inline-block overflow-hidden rounded border border-[#c2956b] px-12 py-3 text-sm font-medium text-white hover:text-[#c2956b] focus:outline-none focus:ring active:bg-[#c2956b] active:text-white"
+          >
+            <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
+            <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
+            <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
+            <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
+           Log In
+          </button>
             </Link>
           </li>
           <li>
-            <Link href="/signup">
-              <button className="border-2 border-[#c2956b] rounded-md px-3 py-1 hover:bg-[#c2956b]">Sign Up</button>
+            <Link href="/SignUp">
+              {/* <button className="border-2 border-[#c2956b] rounded-md px-3 py-1 hover:bg-[#c2956b]">Sign Up</button> */}
+              <button
+            
+            className="mt-auto  group bg-transparent relative inline-block overflow-hidden rounded border border-[#c2956b] px-12 py-3 text-sm font-medium text-white hover:text-[#c2956b] focus:outline-none focus:ring active:bg-[#c2956b] active:text-white"
+          >
+            <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
+            <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
+            <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
+            <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
+           Sign In
+          </button>
             </Link>
           </li>
         </ul>
@@ -63,6 +83,7 @@ export default function Navbar() {
                 <button className="w-full border-2 border-[#c2956b] rounded-md px-4 py-2 hover:bg-[#c2956b]">
                   Log In
                 </button>
+           
               </Link>
             </li>
             <li>
