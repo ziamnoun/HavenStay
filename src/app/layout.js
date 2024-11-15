@@ -8,6 +8,7 @@ import React, { useRef, useState } from 'react';
 import { Navigation } from 'swiper/modules';
 
 import Navbar from "@/Components/Navbar";
+import AuthProvider from "@/Services/AuthProvider";
 
 
 // export const metadata = {
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
      
 
       <body>
+      <AuthProvider>
      
      
       {isHome &&(
@@ -56,8 +58,9 @@ export default function RootLayout({ children }) {
 )}
         
       
-        
+        </AuthProvider> 
       </body>
+   
     </html>
   )
 }
