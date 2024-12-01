@@ -1,5 +1,5 @@
-import { MongoClient } from 'mongodb';
-import dotenv from 'dotenv';
+import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -29,10 +29,9 @@ export async function connectToDatabase() {
   try {
     const client = await clientPromise;
     console.log("MongoDB connected successfully!");
-    return client;
+    return client; // Return the MongoClient instance
   } catch (err) {
     console.error("Error connecting to MongoDB:", err);
     throw new Error("Error connecting to MongoDB");
   }
-  return clientPromise;
 }

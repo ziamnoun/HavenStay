@@ -2,17 +2,36 @@
 "use client";
 
 import Link from "next/link";
+
 import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
+
+
+
 
 const Page = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
+    // if (password.length < 6) {
+    //   toast.error("Password must be at least 6 characters long.");
+    //   return;
+    // }
+  
+    // if (!/[A-Z]/.test(password)) {
+    //   toast.error("Password must contain at least one uppercase letter.");
+    //   return;
+    // }
+  
+    // if (!/[a-z]/.test(password)) {
+    //   toast.error("Password must contain at least one lowercase letter.");
+    //   return;
+    // }
   
     const newUser = { name, email, password };
   
@@ -47,7 +66,8 @@ const Page = () => {
       setError('Something went wrong.');
     }
   };
-  
+
+
   
 
   return (
