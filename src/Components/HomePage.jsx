@@ -71,7 +71,7 @@ export default function HomePage() {
           <div className="company-description text-xs md:text-lg text-white mt-4 md:mt-16">
             <p className="text-2xl md:text-4xl">Rest House, Villas, Pent House, etc...</p>
             <p className="text-[#c2956b] mt-2 md:mt-10">
-              Discover your perfect getaway with HavenStay. We offer luxurious villas, houses, and resorts for rent to make your stay unforgettable.
+              Discover your perfect getaway with HavenStay. We offer luxurious villas, houses, hotel rooms and resorts for rent to make your stay unforgettable.
             </p>
             <Link   href="/SignUp">
             <button
@@ -82,7 +82,7 @@ export default function HomePage() {
               <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
               <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
               <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
-             Sign Up
+             Log In
             </button>
             </Link>
           </div>

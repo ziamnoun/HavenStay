@@ -2,73 +2,55 @@
 "use client";
 
 import Link from "next/link";
-
 import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
-
-
-
 
 const Page = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Start loading
+    setError(null); // Clear previous error
+    setSuccess(null); // Clear previous success
+
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    // if (password.length < 6) {
-    //   toast.error("Password must be at least 6 characters long.");
-    //   return;
-    // }
-  
-    // if (!/[A-Z]/.test(password)) {
-    //   toast.error("Password must contain at least one uppercase letter.");
-    //   return;
-    // }
-  
-    // if (!/[a-z]/.test(password)) {
-    //   toast.error("Password must contain at least one lowercase letter.");
-    //   return;
-    // }
-  
+
     const newUser = { name, email, password };
-  
+
     try {
       const res = await fetch('/SignUp/api', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newUser),
       });
-  
+
       if (!res.ok) {
         const errorText = await res.text();
         console.error('Server error:', errorText);
         setError('Failed to register. Please try again.');
         return;
       }
-  
+
       const data = await res.json();
       setSuccess('Registration successful!');
       console.log(data);
-  
-      // Reset form inputs on success
+
       e.target.name.value = '';
       e.target.email.value = '';
       e.target.password.value = '';
-  
-      // Clear the success message after a few seconds
       setTimeout(() => setSuccess(null), 3000);
-  
     } catch (err) {
       console.error('Error:', err.message);
       setError('Something went wrong.');
+    } finally {
+      setIsLoading(false); // Stop loading
     }
   };
-
-
-  
 
   return (
     <div className="h-screen w-full flex items-center justify-center bg-gradient-to-r from-[#1c1c1c] via-[#3a3a3a] to-[#5e5e5e]">
@@ -126,9 +108,14 @@ const Page = () => {
             <div className="flex justify-between items-center">
               <button
                 type="submit"
-                className="w-full bg-[#c2956b] hover:bg-[#a5814f] text-white p-3 rounded-md font-semibold transition-colors duration-200"
+                disabled={isLoading}
+                className={`w-full p-3 rounded-md font-semibold transition-colors duration-200 ${
+                  isLoading
+                    ? "bg-gray-500 cursor-not-allowed"
+                    : "bg-[#c2956b] hover:bg-[#a5814f] text-white"
+                }`}
               >
-                Register
+                {isLoading ? "Registering..." : "Register"}
               </button>
             </div>
           </form>
