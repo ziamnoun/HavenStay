@@ -1,6 +1,5 @@
-
 'use client'
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -11,6 +10,9 @@ import { FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import Link from 'next/link';
 
 export default function HomePage() {
+ 
+   
+ 
   
   useEffect(() => {
     const nextButton = document.querySelector('.swiper-button-next');
@@ -52,11 +54,12 @@ export default function HomePage() {
               </button>
               <ul className="menu absolute right-5 md:left-5  menu-sm w-[40vw] md:w-[50vw] dropdown-content bg-[#c2956b] rounded-box z-[2] mt-3 p-2 shadow">
               <div className="div  md:flex md:w-[50vw] justify-evenly">
-       <li><a>Home</a></li>
-        <li><a>Explore Properties</a></li>
-        <li><a>Blog</a></li>
-        <li><a>About</a></li>
-        <li><a>Contact</a></li>
+      
+       < li><Link href="/" >Home</Link></li>
+          <li><Link href="/Properties" >Explore Properties</Link></li>
+          <li><Link href="/blog" >Blog</Link></li>
+          <li><Link href="/about" >About</Link></li>
+          <li><Link href="/contact" >Contact</Link></li>
 
         <div className="div-log-sign-in flex gap-2">
        <button  className="border-2 border-black rounded-md px-1"><Link href="/LogIn">Log In</Link> </button>
@@ -73,7 +76,7 @@ export default function HomePage() {
             <p className="text-[#c2956b] mt-2 md:mt-10">
               Discover your perfect getaway with HavenStay. We offer luxurious villas, houses, hotel rooms and resorts for rent to make your stay unforgettable.
             </p>
-            <Link   href="/SignUp">
+            <Link   href="/LogIn">
             <button
             
               className="mt-auto md:mt-8 group bg-transparent relative inline-block overflow-hidden rounded border border-[#c2956b] px-12 py-3 text-sm font-medium text-white hover:text-[#c2956b] focus:outline-none focus:ring active:bg-[#c2956b] active:text-white"
@@ -154,6 +157,4 @@ export default function HomePage() {
     </div>
   );
 }
-
-
 

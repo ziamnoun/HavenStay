@@ -30,7 +30,7 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6 text-lg">
           <li><Link href="/" className="hover:text-[#c2956b]">Home</Link></li>
-          <li><Link href="/properties" className="hover:text-[#c2956b]">Explore Properties</Link></li>
+          <li><Link href="/Properties" className="hover:text-[#c2956b]">Explore Properties</Link></li>
           <li><Link href="/blog" className="hover:text-[#c2956b]">Blog</Link></li>
           <li><Link href="/about" className="hover:text-[#c2956b]">About</Link></li>
           <li><Link href="/contact" className="hover:text-[#c2956b]">Contact</Link></li>
