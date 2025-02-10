@@ -7,7 +7,7 @@ export const GET = async () => {
     const client = await connectToDatabase();
 
     // Access the database with client.db('your_db_name') 
-    const db = client.db('db'); // Replace 'nextjs-mongodb-demo' with your actual database name
+    const db = client.db('db'); 
 
     // Access the 'data' collection
     const servicesCollection = db.collection('data');

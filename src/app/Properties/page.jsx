@@ -1,4 +1,5 @@
 "use client"; 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const PropertiesPage = () => {
@@ -53,12 +54,14 @@ const PropertiesPage = () => {
               <p className="text-sm mb-2">
                 <strong>Location:</strong> {item.location}
               </p>
+              <Link href={`/Properties/${item._id}`}>
               <button
                 className="w-full mt-4 px-4 py-2 bg-[#c2956b] text-black rounded-md hover:bg-black hover:text-[#c2956b] border border-[#c2956b]"
                 onClick={() => alert(`Viewing details for ${item.name}`)}
               >
                 View Details
               </button>
+              </Link>
             </div>
           ))}
         </div>
