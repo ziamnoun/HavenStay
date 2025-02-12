@@ -1,11 +1,13 @@
 
-'use client'
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { FaBars, FaTimes } from 'react-icons/fa';
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session, status } = useSession();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -30,70 +32,192 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6 text-lg">
-          <li><Link href="/" className="hover:text-[#c2956b]">Home</Link></li>
-          <li><Link href="/Properties" className="hover:text-[#c2956b]">Explore Properties</Link></li>
-          <li><Link href="/blog" className="hover:text-[#c2956b]">Blog</Link></li>
-          <li><Link href="/about" className="hover:text-[#c2956b]">About</Link></li>
-          <li><Link href="/contact" className="hover:text-[#c2956b]">Contact</Link></li>
           <li>
-            <Link href="/LogIn">
-              {/* <button className="border-2 border-[#c2956b] rounded-md px-3 py-1 hover:bg-[#c2956b]">Log In</button> */}
-              <button
-            
-            className="mt-auto ml-10  group bg-transparent relative inline-block overflow-hidden rounded border border-[#c2956b] px-12 py-3 text-sm font-medium text-white hover:text-[#c2956b] focus:outline-none focus:ring active:bg-[#c2956b] active:text-white"
-          >
-            <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
-            <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
-            <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
-            <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
-           Log In
-          </button>
+            <Link href="/" className="hover:text-[#c2956b]">
+              Home
             </Link>
           </li>
           <li>
-            <Link href="/SignUp">
-              {/* <button className="border-2 border-[#c2956b] rounded-md px-3 py-1 hover:bg-[#c2956b]">Sign Up</button> */}
-              <button
-            
-            className="mt-auto  group bg-transparent relative inline-block overflow-hidden rounded border border-[#c2956b] px-12 py-3 text-sm font-medium text-white hover:text-[#c2956b] focus:outline-none focus:ring active:bg-[#c2956b] active:text-white"
-          >
-            <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
-            <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
-            <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
-            <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
-           Sign In
-          </button>
+            <Link href="/Properties" className="hover:text-[#c2956b]">
+              Explore Properties
             </Link>
           </li>
+          <li>
+            <Link href="/blog" className="hover:text-[#c2956b]">
+              Blog
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className="hover:text-[#c2956b]">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact" className="hover:text-[#c2956b]">
+              Contact
+            </Link>
+          </li>
+
+          {/* Show User Dropdown if Logged In */}
+          {session ? (
+            <div className="dropdown border-2 rounded-lg border-[#c2956b] dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="User Profile"
+                    src={session.user?.image || "/default-avatar.png"}
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm bg-[#c2956b] dropdown-content text-black  rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <Link href="/profile" className="justify-between">
+                    Profile
+                    
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/settings">Settings</Link>
+                </li>
+                <li>
+                  <button onClick={() => signOut()}>Logout</button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <>
+              <li>
+                <Link href="/LogIn">
+                  <button className="border border-[#c2956b] px-4 py-2 rounded-md hover:bg-[#c2956b]">
+                    Log In
+                  </button>
+                </Link>
+              </li>
+              <li>
+                <Link href="/SignUp">
+                  <button className="border border-[#c2956b] px-4 py-2 rounded-md hover:bg-[#c2956b]">
+                    Sign Up
+                  </button>
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
 
         {/* Mobile Slide-In Menu */}
         <div
           className={`fixed top-0 left-0 h-full w-[70vw] bg-[#282828] transform transition-transform duration-300 ${
-            isOpen ? 'translate-x-0' : '-translate-x-full'
+            isOpen ? "translate-x-0" : "-translate-x-full"
           } z-50`}
         >
           <ul className="mt-16 space-y-6 text-lg px-4">
-            <li><Link href="/" className="block text-[#c2956b]" onClick={toggleMenu}>Home</Link></li>
-            <li><Link href="/Properties" className="block text-[#c2956b]" onClick={toggleMenu}>Explore Properties</Link></li>
-            <li><Link href="/Blog" className="block text-[#c2956b]" onClick={toggleMenu}>Blog</Link></li>
-            <li><Link href="/About" className="block text-[#c2956b]" onClick={toggleMenu}>About</Link></li>
-            <li><Link href="/Contact" className="block text-[#c2956b]" onClick={toggleMenu}>Contact</Link></li>
             <li>
-              <Link href="/LogIn" onClick={toggleMenu}>
-                <button className="w-full border-2 border-[#c2956b] rounded-md px-4 py-2 hover:bg-[#c2956b]">
-                  Log In
-                </button>
-           
+              <Link
+                href="/"
+                className="block text-[#c2956b]"
+                onClick={toggleMenu}
+              >
+                Home
               </Link>
             </li>
             <li>
-              <Link href="/SignUp" onClick={toggleMenu}>
-                <button className="w-full border-2 border-[#c2956b] rounded-md px-4 py-2 hover:bg-[#c2956b]">
-                  Sign Up
-                </button>
+              <Link
+                href="/Properties"
+                className="block text-[#c2956b]"
+                onClick={toggleMenu}
+              >
+                Explore Properties
               </Link>
             </li>
+            <li>
+              <Link
+                href="/Blog"
+                className="block text-[#c2956b]"
+                onClick={toggleMenu}
+              >
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/About"
+                className="block text-[#c2956b]"
+                onClick={toggleMenu}
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/Contact"
+                className="block text-[#c2956b]"
+                onClick={toggleMenu}
+              >
+                Contact
+              </Link>
+            </li>
+
+            {/* Mobile Menu: User Dropdown or Login/Signup */}
+            {session ? (
+              <li className="mt-4">
+                <div className="div">User Information</div>
+                <div className=" items-center gap-3">
+                  <img
+                    alt="User Profile"
+                    src={session.user?.image || "/default-avatar.png"}
+                    className="w-10 h-10 rounded-full"
+                  />
+                  <span className="text-[#c2956b]">{session.user?.name}</span>
+                </div>
+                <ul className="mt-2 space-y-2">
+                  <li>
+                    <Link href="/profile" className="text-[#c2956b]">
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/settings" className="text-[#c2956b]">
+                      Settings
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => {
+                        signOut();
+                        toggleMenu();
+                      }}
+                      className="text-red-500"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link href="/LogIn" onClick={toggleMenu}>
+                    <button className="w-full border-2 border-[#c2956b] rounded-md px-4 py-2 hover:bg-[#c2956b]">
+                      Log In
+                    </button>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/SignUp" onClick={toggleMenu}>
+                    <button className="w-full border-2 border-[#c2956b] rounded-md px-4 py-2 hover:bg-[#c2956b]">
+                      Sign Up
+                    </button>
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

@@ -8,8 +8,10 @@ import 'swiper/css/effect-fade';
 import { Navigation, Autoplay, EffectFade } from 'swiper/modules'; 
 import { FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 export default function HomePage() {
+  const { data: session, status } = useSession();
  
    
  
