@@ -1,21 +1,59 @@
+
 'use client'
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
-import 'swiper/css/effect-fade';  
-import { Navigation, Autoplay, EffectFade } from 'swiper/modules'; 
+import 'swiper/css/effect-fade';
+import { Navigation, Autoplay, EffectFade } from 'swiper/modules';
 import { FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 
 export default function HomePage() {
   const { data: session, status } = useSession();
- 
-   
- 
-  
+  const [isOpen, setIsOpen] = useState(false); // State for main menu
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false); // State for user dropdown
+     useEffect(() => {
+        const nextButton = document.querySelector('.swiper-button-next');
+        const prevButton = document.querySelector('.swiper-button-prev');
+    
+        if (nextButton && prevButton) {
+          nextButton.style.color = '#c2956b';
+          prevButton.style.color = '#c2956b';
+        }
+      }, []);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const toggleUserDropdown = () => {
+    setIsUserDropdownOpen(!isUserDropdownOpen);
+  };
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const mainMenu = document.querySelector('.dropdown');
+      const userDropdown = document.querySelector('.user-dropdown');
+
+      if (mainMenu && !mainMenu.contains(event.target)) {
+        setIsOpen(false); // Close main menu
+      }
+
+      if (userDropdown && !userDropdown.contains(event.target)) {
+        setIsUserDropdownOpen(false); // Close user dropdown
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   useEffect(() => {
     const nextButton = document.querySelector('.swiper-button-next');
     const prevButton = document.querySelector('.swiper-button-prev');
@@ -29,7 +67,6 @@ export default function HomePage() {
   return (
     <div className="h-screen bg-white">
       <div className="div-upper-part h-[80%] bg-white grid grid-cols-1 md:grid-cols-3">
-        
         {/* Left Section (Sidebar) */}
         <div className="div-1 bg-[#282828] col-span-1 border-r-2 border-black flex flex-col p-4">
           {/* Company Name and Menu */}
@@ -38,7 +75,11 @@ export default function HomePage() {
               <span className="text-[#c2956b]">Haven</span>Stay
             </div>
             <div className="dropdown relative">
-              <button tabIndex={0} className="btn btn-ghost btn-circle">
+              <button
+                tabIndex={0}
+                className="btn btn-ghost btn-circle"
+                onClick={toggleMenu} // Toggle main menu
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 text-[#c2956b]"
@@ -54,21 +95,54 @@ export default function HomePage() {
                   />
                 </svg>
               </button>
-              <ul className="menu absolute right-5 md:left-5  menu-sm w-[40vw] md:w-[50vw] dropdown-content bg-[#c2956b] rounded-box z-[2] mt-3 p-2 shadow">
-              <div className="div  md:flex md:w-[50vw] justify-evenly">
-      
-       < li><Link href="/" >Home</Link></li>
-          <li><Link href="/Properties" >Explore Properties</Link></li>
-          <li><Link href="/blog" >Blog</Link></li>
-          <li><Link href="/about" >About</Link></li>
-          <li><Link href="/contact" >Contact</Link></li>
-
-        <div className="div-log-sign-in flex gap-2">
-       <button  className="border-2 border-black rounded-md px-1"><Link href="/LogIn">Log In</Link> </button>
-        <button className="border-2 border-black  rounded-md px-1"><Link href="/SignUp">Sign In</Link></button>
-        </div>
-       </div>
-              </ul>
+              {isOpen && (
+                <ul className="menu absolute right-5 md:left-5 menu-sm w-[40vw] md:w-[50vw] dropdown-content bg-[#c2956b] rounded-box z-[2] mt-3 p-2 shadow">
+                  <div className="div md:flex md:w-[50vw] justify-evenly">
+                    <li><Link href="/">Home</Link></li>
+                    <li><Link href="/Properties">Explore Properties</Link></li>
+                    <li><Link href="/blog">Blog</Link></li>
+                    <li><Link href="/about">About</Link></li>
+                    <li><Link href="/contact">Contact</Link></li>
+                    {session ? (
+                      <div className="user-dropdown relative">
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="btn btn-ghost btn-circle avatar"
+                          onClick={toggleUserDropdown} // Toggle user dropdown
+                        >
+                          <div className="w-10 rounded-full">
+                            <img
+                              alt="User Profile"
+                              src={session.user?.image || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
+                            />
+                          </div>
+                        </div>
+                        {isUserDropdownOpen && (
+                          <ul
+                            tabIndex={0}
+                            className="menu menu-sm bg-[#c2956b] dropdown-content text-black rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                          >
+                            <li>
+                              <Link href="/profile" className="justify-between">
+                                Profile
+                              </Link>
+                            </li>
+                            <li>
+                              <Link href="/settings">Settings</Link>
+                            </li>
+                            <li>
+                              <button onClick={() => signOut()}>Logout</button>
+                            </li>
+                          </ul>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="div"></div>
+                    )}
+                  </div>
+                </ul>
+              )}
             </div>
           </div>
 
@@ -78,24 +152,23 @@ export default function HomePage() {
             <p className="text-[#c2956b] mt-2 md:mt-10">
               Discover your perfect getaway with HavenStay. We offer luxurious villas, houses, hotel rooms and resorts for rent to make your stay unforgettable.
             </p>
-            <Link   href="/LogIn">
-            <button
-            
-              className="mt-auto md:mt-8 group bg-transparent relative inline-block overflow-hidden rounded border border-[#c2956b] px-12 py-3 text-sm font-medium text-white hover:text-[#c2956b] focus:outline-none focus:ring active:bg-[#c2956b] active:text-white"
-            >
-              <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
-              <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
-              <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
-              <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
-             Log In
-            </button>
+            <Link href="/LogIn">
+              <button
+                className="mt-auto md:mt-8 group bg-transparent relative inline-block overflow-hidden rounded border border-[#c2956b] px-12 py-3 text-sm font-medium text-white hover:text-[#c2956b] focus:outline-none focus:ring active:bg-[#c2956b] active:text-white"
+              >
+                <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
+                <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
+                <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
+                <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
+                Log In
+              </button>
             </Link>
           </div>
         </div>
 
         {/* Swiper Section */}
         <div className="div-2-sliding-part bg-transparent col-span-2 h-full">
-          <Swiper
+        <Swiper
             navigation={true}
             autoplay={{ delay: 1500, disableOnInteraction: false }}
             effect="fade"
@@ -132,14 +205,12 @@ export default function HomePage() {
       <div className="div-lower-part h-[20%] grid grid-cols-1 md:grid-cols-3 text-center md:text-left">
         {/* Contact Information and Social Media Icons */}
         <div className="div-1 bg-[#262626] md:border-r-2 border-black flex items-center justify-center text-white">
-          <p className="text-xs md:text-base">© 2023 HavenStay</p>
+          <p className="text-xs md:text-base">© 2025 HavenStay</p>
         </div>
-        
         <div className="div-2 bg-[#282828] col-span-2 text-white p-4 md:p-6 flex flex-col md:flex-row items-center justify-between">
           <div className="text-lg md:text-3xl font-bold mb-2 md:mb-0">
             <span className="text-[#c2956b]">54</span> Houses available
           </div>
-
           <div>
             <p className="text-xl md:text-2xl">Contacts</p>
             <div className="flex justify-center md:justify-start space-x-6 mt-2">
@@ -159,4 +230,3 @@ export default function HomePage() {
     </div>
   );
 }
-

@@ -60,7 +60,7 @@ export default function Navbar() {
 
           {/* Show User Dropdown if Logged In */}
           {session ? (
-            <div className="dropdown border-2 rounded-lg border-[#c2956b] dropdown-end">
+            <div   onClick={toggleMenu} className="dropdown border-2 rounded-lg border-[#c2956b] dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
@@ -69,7 +69,7 @@ export default function Navbar() {
                 <div className="w-10 rounded-full">
                   <img
                     alt="User Profile"
-                    src={session.user?.image || "/default-avatar.png"}
+                    src={session.user?.image || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
                   />
                 </div>
               </div>
@@ -171,7 +171,7 @@ export default function Navbar() {
                 <div className=" items-center gap-3">
                   <img
                     alt="User Profile"
-                    src={session.user?.image || "/default-avatar.png"}
+                    src={session.user?.image || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
                     className="w-10 h-10 rounded-full"
                   />
                   <span className="text-[#c2956b]">{session.user?.name}</span>
