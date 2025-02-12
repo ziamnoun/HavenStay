@@ -43,17 +43,17 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/blog" className="hover:text-[#c2956b]">
+            <Link href="/Blog" className="hover:text-[#c2956b]">
               Blog
             </Link>
           </li>
           <li>
-            <Link href="/about" className="hover:text-[#c2956b]">
+            <Link href="/About" className="hover:text-[#c2956b]">
               About
             </Link>
           </li>
           <li>
-            <Link href="/contact" className="hover:text-[#c2956b]">
+            <Link href="/Contact" className="hover:text-[#c2956b]">
               Contact
             </Link>
           </li>

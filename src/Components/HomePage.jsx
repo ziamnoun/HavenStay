@@ -100,9 +100,9 @@ export default function HomePage() {
                   <div className="div md:flex md:w-[50vw] justify-evenly">
                     <li><Link href="/">Home</Link></li>
                     <li><Link href="/Properties">Explore Properties</Link></li>
-                    <li><Link href="/blog">Blog</Link></li>
-                    <li><Link href="/about">About</Link></li>
-                    <li><Link href="/contact">Contact</Link></li>
+                    <li><Link href="/Blog">Blog</Link></li>
+                    <li><Link href="/About">About</Link></li>
+                    <li><Link href="/Contact">Contact</Link></li>
                     {session ? (
                       <div className="user-dropdown relative">
                         <div
@@ -152,7 +152,17 @@ export default function HomePage() {
             <p className="text-[#c2956b] mt-2 md:mt-10">
               Discover your perfect getaway with HavenStay. We offer luxurious villas, houses, hotel rooms and resorts for rent to make your stay unforgettable.
             </p>
-            <Link href="/LogIn">
+            {session?( <Link href="/Properties">
+              <button
+                className="mt-auto md:mt-8 group bg-transparent relative inline-block overflow-hidden rounded border border-[#c2956b] px-12 py-3 text-sm font-medium text-white hover:text-[#c2956b] focus:outline-none focus:ring active:bg-[#c2956b] active:text-white"
+              >
+                <span className="ease absolute left-0 top-0 h-0 w-0 border-t-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
+                <span className="ease absolute right-0 top-0 h-0 w-0 border-r-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
+                <span className="ease absolute bottom-0 right-0 h-0 w-0 border-b-2 border-[#c2956b] transition-all duration-2000 group-hover:w-full"></span>
+                <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
+                Explore More
+              </button>
+            </Link>):( <Link href="/LogIn">
               <button
                 className="mt-auto md:mt-8 group bg-transparent relative inline-block overflow-hidden rounded border border-[#c2956b] px-12 py-3 text-sm font-medium text-white hover:text-[#c2956b] focus:outline-none focus:ring active:bg-[#c2956b] active:text-white"
               >
@@ -162,7 +172,8 @@ export default function HomePage() {
                 <span className="ease absolute bottom-0 left-0 h-0 w-0 border-l-2 border-[#c2956b] transition-all duration-2000 group-hover:h-full"></span>
                 Log In
               </button>
-            </Link>
+            </Link>)}
+           
           </div>
         </div>
 
