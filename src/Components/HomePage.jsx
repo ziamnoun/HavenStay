@@ -104,14 +104,14 @@ export default function HomePage() {
                     <li><Link href="/About">About</Link></li>
                     <li><Link href="/Contact">Contact</Link></li>
                     {session ? (
-                      <div className="user-dropdown relative">
+                      <div className="user-dropdown relative border-2 rounded-lg border-black">
                         <div
                           tabIndex={0}
                           role="button"
                           className="btn btn-ghost btn-circle avatar"
                           onClick={toggleUserDropdown} // Toggle user dropdown
                         >
-                          <div className="w-10 rounded-full">
+                          <div className="w-10 border-black border-1 rounded-full">
                             <img
                               alt="User Profile"
                               src={session.user?.image || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
@@ -124,7 +124,7 @@ export default function HomePage() {
                             className="menu menu-sm bg-[#c2956b] dropdown-content text-black rounded-box z-[1] mt-3 w-52 p-2 shadow"
                           >
                             <li>
-                              <Link href="/profile" className="justify-between">
+                              <Link href="/Profile" className="justify-between">
                                 Profile
                               </Link>
                             </li>

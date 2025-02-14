@@ -78,7 +78,7 @@ export default function Navbar() {
                 className="menu menu-sm bg-[#c2956b] dropdown-content text-black  rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
                 <li>
-                  <Link href="/profile" className="justify-between">
+                  <Link href="/Profile" className="justify-between">
                     Profile
                     
                   </Link>
@@ -113,7 +113,7 @@ export default function Navbar() {
 
         {/* Mobile Slide-In Menu */}
         <div
-          className={`fixed top-0 left-0 h-full w-[70vw] bg-[#282828] transform transition-transform duration-300 ${
+          className={`md:hidden fixed top-0 left-0 h-full w-[70vw] bg-[#282828] transform transition-transform duration-300 ${
             isOpen ? "translate-x-0" : "-translate-x-full"
           } z-50`}
         >
@@ -178,7 +178,7 @@ export default function Navbar() {
                 </div>
                 <ul className="mt-2 space-y-2">
                   <li>
-                    <Link href="/profile" className="text-[#c2956b]">
+                    <Link href="/Profile" className="text-[#c2956b]">
                       Profile
                     </Link>
                   </li>

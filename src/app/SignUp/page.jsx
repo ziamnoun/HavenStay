@@ -1,6 +1,7 @@
 
 "use client";
 
+import SocialSignin from "@/Components/SocialSignin";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
@@ -121,10 +122,7 @@ const Page = () => {
           </form>
 
           <div className="mt-6 text-center space-y-4">
-            <button className="w-full flex items-center justify-center bg-gradient-to-r from-[#f1d350] to-[#DB4437] text-white p-3 rounded-md font-semibold transition-all">
-              <FaGoogle className="mr-2 text-lg" />
-              Sign in with Google
-            </button>
+           <SocialSignin></SocialSignin>
 
             <div className="text-sm text-center">
               <Link href="/LogIn" className="text-[#c2956b] hover:underline">
