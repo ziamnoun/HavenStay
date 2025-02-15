@@ -77,7 +77,7 @@ const Page = () => {
               className="w-full h-64 object-cover"
             />
             <div className="p-6">
-              <h2 className={`text-xl font-semibold ${darkMode ? "text-gray-200" : "text-gray-800"}`}>{blog.title}</h2>
+              <h2 className={`text-xl font-semibold ${darkMode ? "text-gray-800" : "text-gray-800"}`}>{blog.title}</h2>
               <p className={`text-gray-500 mt-2 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>{blog.content.slice(0, 150)}...</p>
               <p className={`text-gray-400 text-sm mt-4 ${darkMode ? "text-gray-500" : "text-gray-400"}`}>{new Date(blog.date).toLocaleDateString()}</p>
 
