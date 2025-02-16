@@ -1,3 +1,4 @@
+
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
@@ -25,20 +26,18 @@ const handler = NextAuth({
 
         // Connect to the database
         const client = await connectToDatabase();
-
-        // Make sure the client is valid and access the correct db
         if (!client || !client.db) {
           return null; // Return null if the db is not available
         }
 
-        const db = client.db(); // Access the database
+        const db = client.db();
         const currentUser = await db.collection("users").findOne({ email });
 
         if (!currentUser) {
           return null; // User not found
         }
 
-        // Check if the password matches (using bcryptjs compare)
+        // Check if the password matches
         const passwordMatched = await bcryptjs.compare(password, currentUser.password);
         if (!passwordMatched) {
           return null; // Password does not match
@@ -49,13 +48,36 @@ const handler = NextAuth({
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET
-    })
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
+      if (account?.provider === "google") {
+        const client = await connectToDatabase();
+        if (!client || !client.db) return token;
+
+        const db = client.db();
+        const existingUser = await db.collection("users").findOne({ email: token.email });
+
+        if (!existingUser) {
+          // If user does not exist, insert new user
+          const newUser = {
+            name: token.name,
+            email: token.email,
+            image: token.picture,
+            provider: "google",
+            createdAt: new Date(),
+          };
+          const result = await db.collection("users").insertOne(newUser);
+          token.id = result.insertedId.toString();
+        } else {
+          token.id = existingUser._id.toString();
+        }
+      }
+
       if (user) {
-        token.id = user._id;
+        token.id = user._id?.toString();
         token.email = user.email;
         token.name = user.name;
         token.image = user.image;
