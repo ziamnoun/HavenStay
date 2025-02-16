@@ -84,10 +84,10 @@ export default function Navbar() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/settings">Settings</Link>
+                  <Link href="/Post">Post</Link>
                 </li>
                 <li>
-                  <button onClick={() => signOut()}>Logout</button>
+                  <button onClick={() => signOut({ callbackUrl: "/" })}>Logout</button>
                 </li>
               </ul>
             </div>
@@ -183,14 +183,14 @@ export default function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/settings" className="text-[#c2956b]">
-                      Settings
+                    <Link href="/Post" className="text-[#c2956b]">
+                     Post
                     </Link>
                   </li>
                   <li>
                     <button
                       onClick={() => {
-                        signOut();
+                        signOut({ callbackUrl: "/" });
                         toggleMenu();
                       }}
                       className="text-red-500"

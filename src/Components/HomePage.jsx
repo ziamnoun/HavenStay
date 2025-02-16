@@ -129,10 +129,10 @@ export default function HomePage() {
                               </Link>
                             </li>
                             <li>
-                              <Link href="/settings">Settings</Link>
+                              <Link href="/Post">Post</Link>
                             </li>
                             <li>
-                              <button onClick={() => signOut()}>Logout</button>
+                              <button onClick={() => signOut({ callbackUrl: "/" })}>Logout</button>
                             </li>
                           </ul>
                         )}

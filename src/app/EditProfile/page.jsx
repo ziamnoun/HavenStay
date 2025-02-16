@@ -20,6 +20,7 @@ export default function EditProfile() {
   const [loading, setLoading] = useState(true);
   const { data: session, status } = useSession();
   const Email = session?.user?.email;
+  
 
   useEffect(() => {
     const fetchData = async () => {
