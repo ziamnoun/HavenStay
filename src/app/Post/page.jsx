@@ -2,6 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import withAuth from "@/utils/withAuth";
 
 const PostPage = () => {
   const { data: session, status } = useSession();
@@ -150,4 +151,4 @@ const PostPage = () => {
   );
 };
 
-export default PostPage;
+export default withAuth(PostPage);

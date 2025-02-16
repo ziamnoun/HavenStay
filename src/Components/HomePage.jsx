@@ -220,7 +220,7 @@ export default function HomePage() {
         </div>
         <div className="div-2 bg-[#282828] col-span-2 text-white p-4 md:p-6 flex flex-col md:flex-row items-center justify-between">
           <div className="text-lg md:text-3xl font-bold mb-2 md:mb-0">
-            <span className="text-[#c2956b]">54</span> Houses available
+            <span className="text-[#c2956b]">Premium</span> Houses available
           </div>
           <div>
             <p className="text-xl md:text-2xl">Contacts</p>

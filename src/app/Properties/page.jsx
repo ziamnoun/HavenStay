@@ -1,6 +1,7 @@
 "use client"; 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import withAuth from "@/utils/withAuth";
 
 const PropertiesPage = () => {
   const [data, setData] = useState([]); 
@@ -72,4 +73,4 @@ const PropertiesPage = () => {
   );
 };
 
-export default PropertiesPage;
+export default withAuth(PropertiesPage);

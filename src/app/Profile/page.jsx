@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { FaEnvelope, FaUserCircle, FaMoon, FaSun } from "react-icons/fa";
+import withAuth from "@/utils/withAuth";
 
 const Profile = () => {
     const { data: session, status } = useSession();
@@ -130,4 +131,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default withAuth(Profile);
