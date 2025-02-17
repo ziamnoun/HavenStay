@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 
 const Page = () => {
@@ -74,6 +75,7 @@ const Page = () => {
             <img
               src={blog.image}
               alt={blog.title}
+             
               className="w-full h-64 object-cover"
             />
             <div className="p-6">

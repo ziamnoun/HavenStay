@@ -114,7 +114,7 @@ const Page = () => {
 
             <div className="text-sm text-center">
               <Link href="/SignUp" className="text-[#c2956b] hover:underline">
-                Don't have an account? Register
+              Don&apos;t have an account?  Register
               </Link>
             </div>
           </div>
