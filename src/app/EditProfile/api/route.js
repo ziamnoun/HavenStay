@@ -1,29 +1,33 @@
+
+
 import { connectToDatabase } from "@/lib/connectDB";
-import { ObjectId } from "mongodb";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
+    // Parse the request body
     const body = await req.json();
-    const { userId, name, profilePic, location, gender, age, profession, bio } = body;
+    const { email, name, profilePic, location, gender, age, profession, bio } = body;
 
-    if (!userId) {
-      return new Response(JSON.stringify({ message: "User ID is required" }), { status: 400 });
+    // Validate input: Ensure email is provided
+    if (!email) {
+      return NextResponse.json({ message: "Email is required" }, { status: 400 });
     }
 
-  
+    // Connect to the database
     const client = await connectToDatabase();
-    const db = client.db("db"); 
+    const db = client.db("db");
 
-    
-    const existingUser = await db.collection("users").findOne({ _id: new ObjectId(userId) });
+    // Check if the user with the provided email exists
+    const existingUser = await db.collection("users").findOne({ email });
 
     if (!existingUser) {
-      return new Response(JSON.stringify({ message: "User not found" }), { status: 404 });
+      return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    
+    // Update user profile by email
     await db.collection("users").updateOne(
-      { _id: new ObjectId(userId) },
+      { email }, // Search by email
       {
         $set: {
           name,
@@ -32,20 +36,18 @@ export async function POST(req) {
           gender,
           age,
           profession,
-          bio
+          bio,
         },
       }
     );
 
-    return new Response(
-      JSON.stringify({ message: "Profile updated successfully!" }),
-      { status: 200 }
-    );
+    // Return success response
+    return NextResponse.json({ message: "Profile updated successfully!" }, { status: 200 });
+
   } catch (error) {
     console.error("Error updating profile:", error);
-    return new Response(
-      JSON.stringify({ message: "Server error, please try again later" }),
-      { status: 500 }
-    );
+
+    // Return error response if something goes wrong
+    return NextResponse.json({ message: "Server error, please try again later" }, { status: 500 });
   }
 }

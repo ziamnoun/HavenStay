@@ -1,5 +1,6 @@
 
 
+
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -9,10 +10,10 @@ export default function EditProfile() {
   const [name, setName] = useState('');
   const [profilePic, setProfilePic] = useState('');
   const [location, setLocation] = useState('');
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState('Male');
   const [age, setAge] = useState('');
   const [profession, setProfession] = useState('');
-  const [bio, setBio] = useState('');  // Added bio state
+  const [bio, setBio] = useState('');  
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,6 +21,7 @@ export default function EditProfile() {
   const [loading, setLoading] = useState(true);
   const { data: session, status } = useSession();
   const Email = session?.user?.email;
+ 
   
 
   useEffect(() => {
@@ -47,34 +49,34 @@ export default function EditProfile() {
 
     fetchData();
   }, [Email]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
     setSuccess(null);
+    console.log(gender,age)
     
     try {
       const res = await fetch("/EditProfile/api", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          userId: session.user.id,
+          email: session?.user?.email, // Send the email to the backend
           name,
           profilePic,
           location,
           gender,
           age,
           profession,
-          bio,  
+          bio,
         }),
       });
-
+  
       if (!res.ok) {
         const errorData = await res.json();
         throw new Error(errorData.message || "Failed to update profile");
       }
-
+  
       setSuccess("Profile updated successfully!");
     } catch (error) {
       setError(`Error: ${error.message || "Unknown error"}`);
@@ -136,8 +138,13 @@ export default function EditProfile() {
             </div>
 
             <div>
-              <label htmlFor="gender" className="block text-white mb-2">Gender</label>
-              <select id="gender" value={gender} onChange={(e) => setGender(e.target.value)}
+              <label htmlFor="gender" className="block text-white mb-2">
+                Gender
+              </label>
+              <select
+                id="gender"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)} 
                 className="w-full p-4 rounded-md text-black bg-white focus:ring-[#c2956b] focus:border-[#c2956b] transition-all duration-200"
               >
                 <option value="Male">Male</option>
@@ -194,3 +201,4 @@ export default function EditProfile() {
     </div>
   );
 }
+
